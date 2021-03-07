@@ -12,7 +12,7 @@ namespace Project.Repositories
 
         Task<IEnumerable<Product>> GetAll();
 
-        void Create(ProductDto product);
+        Task<Product> Create(ProductDto product);
 
         Task<Product> Update(Guid productId, ProductDto product);
 

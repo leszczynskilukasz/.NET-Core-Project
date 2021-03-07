@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Project.Controllers
 {
@@ -53,9 +52,14 @@ namespace Project.Controllers
 
         // POST api/<ProductController>
         [HttpPost]
-        public void CreateProduct([FromBody] ProductDto product)
+        public async Task<IActionResult> CreateProduct([FromBody] ProductDto product)
         {
-            _productRepository.Create(product);
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _productRepository.Create(product);
+            return Ok(result);
         }
 
         // PUT api/<ProductController>/5

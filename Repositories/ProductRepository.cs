@@ -33,7 +33,7 @@ namespace Project.Repositories
             return result;
         }
 
-        public async void Create(ProductDto product)
+        public async Task<Product> Create(ProductDto product)
         {
             var newProduct = new Product
             {
@@ -43,6 +43,7 @@ namespace Project.Repositories
             };
             await _context.Products.AddAsync(newProduct);
             _context.SaveChanges();
+            return newProduct;
         }
 
         public async Task<Product> Update(Guid productId, ProductDto product)
