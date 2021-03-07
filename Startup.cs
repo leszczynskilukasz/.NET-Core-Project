@@ -1,17 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Project.DataConfig;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Project.Repositories;
 
 namespace Project
 {
@@ -30,6 +25,9 @@ namespace Project
             services.AddDbContext<ProductdbContext>
            (o => o.UseSqlServer(Configuration.
             GetConnectionString("ProductDatabase")));
+
+            services.AddTransient<IProductRepository, ProductRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,8 +44,6 @@ namespace Project
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project v1"));
             }
-
-            // db.Database.EnsureCreated();
 
             app.UseRouting();
 

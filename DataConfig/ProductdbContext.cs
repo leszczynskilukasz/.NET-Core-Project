@@ -8,6 +8,11 @@ namespace Project.DataConfig
         public ProductdbContext(DbContextOptions<ProductdbContext> options) : base(options)
         {
         }
-        public DbSet<Product> Product { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ProductEntityConfiguration());
+        }
     }
 }

@@ -10,8 +10,8 @@ using Project.DataConfig;
 namespace Project.Migrations
 {
     [DbContext(typeof(ProductdbContext))]
-    [Migration("20210307000541_dbmigration")]
-    partial class dbmigration
+    [Migration("20210307024025_dbproductmigration")]
+    partial class dbproductmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,22 +25,19 @@ namespace Project.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("Name");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Price");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }
