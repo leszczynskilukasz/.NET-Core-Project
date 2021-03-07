@@ -79,7 +79,7 @@ namespace Project.Controllers
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Product>> RemoveProduct([FromRoute] Guid id)
+        public async Task<IActionResult> RemoveProduct([FromRoute] Guid id)
         {
             try
             {
